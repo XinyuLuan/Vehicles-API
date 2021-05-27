@@ -102,9 +102,12 @@ class CarController {
          *   Update the first line as part of the above implementing.
          */
         car.setId(id);
-        Resource<Car> resource = assembler.toResource(carService.save(car));
+        Car newCar = carService.save(car);
+        log.info("New car: " + _TAG + ": " + newCar.toString());
+        Resource<Car> resource = assembler.toResource(newCar);
         return ResponseEntity.ok(resource);
     }
+
 
     /**
      * Removes a vehicle from the system.
